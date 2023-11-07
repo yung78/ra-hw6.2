@@ -4,7 +4,7 @@ import Input from '../Input/Input';
 import { useEffect, useState } from 'react';
 
 export default function Notes() {
-  const url = 'http://localhost:7070/notes/';  //http://localhost:7070/notes/
+  const url = 'https://ra-hw6-2-server.onrender.com/notes/';  //http://localhost:7070/notes/
   const [notes, setNotes] = useState([]);
 
   const get = () => {
