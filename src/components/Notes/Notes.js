@@ -4,13 +4,15 @@ import Input from '../Input/Input';
 import { useEffect, useState } from 'react';
 
 export default function Notes() {
-  const url = 'https://ra-hw6-2-server.onrender.com/notes/';  //http://localhost:7070/notes/
+  const url =  'http://localhost:7070/notes/'; // 'https://ra-hw6-2-server.onrender.com/notes/';
   const [notes, setNotes] = useState([]);
 
   const get = () => {
     fetch(url)
+      .then((response) => response.ok ? response : new Error(response.statusText))
       .then((response) => response.json())
-      .then((data) => setNotes(data.notes));
+      .then((data) => setNotes(data.notes))
+      .catch((err) => console.log('Exit with error: ' + err));
   }
 
   useEffect(() => {
@@ -32,7 +34,6 @@ export default function Notes() {
       </header>
       <div className='notes'>
         {notes.map((note, index) => {
-          console.log(notes);
           return (
             <Note
               key = {index}

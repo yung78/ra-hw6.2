@@ -3,6 +3,8 @@ import './Input.css';
 
 export default function Input({setNotes, url,}) {
   const [note, setNote] = useState('');
+
+  const setHandler = (data) => data.notes;
   
   const handlerSubmit = (e) => {
     e.preventDefault();
@@ -11,10 +13,15 @@ export default function Input({setNotes, url,}) {
 
     fetch(url, {
       method: 'POST',
-      body: note,
+      body: JSON.stringify({content: note}),
+      headers: {
+        'Content-Type': 'application/json',
+      }
     })
+      .then((response) => response.ok ? response : new Error(response.statusText))
       .then((response) => response.json())
-      .then((data) => setNotes(data.notes));
+      .then((data) => setNotes(setHandler(data)))
+      .catch((err) => console.log('Exit with error: ' + err));
     
     setNote('');
   }

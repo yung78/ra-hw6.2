@@ -35,3 +35,8 @@ button {
   border: 2px solid rgba(120, 120, 120, 0.8);
   background:no-repeat center/80% url('../../../public/save.png') rgba(230, 215, 195, 0.5);
 }
+
+p {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
